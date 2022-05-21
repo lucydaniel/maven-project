@@ -1,4 +1,4 @@
-pipeline {
+[4:48 PM, 5/21/2022] Kemvoueric: pipeline {
     agent any
 
     stages {
@@ -12,7 +12,115 @@ pipeline {
 
                             string(
                                 defaultValue: '001', 
-                                name: 'Image-TAG', 
+                                name: 'ImageTAG', 
+                                trim: true
+                            )
+                        ])
+                    ])
+                }
+            }
+        }
+
+
+
+
+        stage('clean') {
+            agent {
+                 docker { image 'maven:3.8.5-openjdk-8-slim' }
+             }
+
+            steps {
+               sh '''
+               rm -rf webapp/target/webapp.war || true
+          …
+[4:59 PM, 5/21/2022] Kemvoueric: ls l webapp/target/
+[4:59 PM, 5/21/2022] Kemvoueric: pwd
+[5:03 PM, 5/21/2022] Kemvoueric: pipeline {
+    agent any
+   
+   environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
+      
+
+    stages {
+        
+       stage('Setup parameters') {
+            steps {
+                script { 
+                    properties([
+                        parameters([
+                          
+
+                            string(
+                                defaultValue: '001', 
+                                name: 'ImageTAG', 
+                                trim: true
+                            )
+                        ])
+                    ])
+                }
+      …
+[5:06 PM, 5/21/2022] Kemvoueric: pipeline {
+    agent any
+   
+   environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
+      
+
+    stages {
+        
+       stage('Setup parameters') {
+            steps {
+                script { 
+                    properties([
+                        parameters([
+                          
+
+                            string(
+                                defaultValue: '001', 
+                                name: 'ImageTAG', 
+                                trim: true
+                            )
+                        ])
+                    ])
+                }
+      …
+[5:15 PM, 5/21/2022] Kemvoueric: webapp/target
+[5:15 PM, 5/21/2022] Kemvoueric: pwd
+[5:15 PM, 5/21/2022] Kemvoueric: pipeline {
+    agent any
+   
+   environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
+      
+
+    stages {
+        
+       stage('Setup parameters') {
+            steps {
+                script { 
+                    properties([
+                        parameters([
+                          
+
+                            string(
+                                defaultValue: '001', 
+                                name: 'ImageTAG', 
                                 trim: true
                             )
                         ])
@@ -119,11 +227,34 @@ stage('build ') {
 
             steps {
                sh '''
-           docker build -t devopseasylearning2021:$Image-TAG .
+           docker build -t devopseasylearning2021/eric:$ImageTAG .
                '''
             }
         }
        
+
+
+
+
+
+      stage('Docker Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+           
+            
+
+     stage('Docker push ') {
+            steps {
+               sh '''
+              docker push devopseasylearning2021/eric:$ImageTAG 
+                '''
+            }
+        }
+
 
 
     }
