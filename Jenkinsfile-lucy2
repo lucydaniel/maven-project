@@ -9,6 +9,7 @@ pipeline {
         }
             steps {
                 sh '''
+                rm -rf webapp/target/webapp.war || ture 
                 mvn clean
                 '''
             }
@@ -83,6 +84,14 @@ pipeline {
             }
         }
 
+ stage('build') {
+           
+            steps {
+                sh '''
+             docker build -t devopseasylearning2021:001 .   
+                '''
+            }
+        }
 
     }
 
