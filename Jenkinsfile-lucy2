@@ -55,7 +55,8 @@ pipeline {
             steps {
                 sh '''
                 mvn package
-                ls -l webapp/
+                ls l webapp/target
+                pwd
                 '''
             }
         }
