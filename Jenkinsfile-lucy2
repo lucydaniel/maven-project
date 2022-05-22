@@ -54,7 +54,8 @@ pipeline {
        }
             steps {
                 sh '''
-                mvn package 
+                mvn package
+                ls -l webapp/
                 '''
             }
         }
