@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@lucydaniel 
+lucydaniel
+/
+maven-project
+Public
+forked from devopseasylearning/maven-project
+Code
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+maven-project/webapp/src/main/webapp/index.jsp
+@kemvoueric
+kemvoueric Update index.jsp
+Latest commit b1fc60a on Nov 13, 2021
+ History
+ 1 contributor
+237 lines (231 sloc)  10.4 KB
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +37,7 @@
 
   <title>PARKING LOT: welcome to Devops made easy</title>
   <meta name="description" content="Parking Lot - Register and Get your Parking Slot.">
-  <meta name="author" content="Liyas Thomas">
+  <meta name="author" content="eric">
 
   <!-- Bootstrap core CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -235,3 +264,16 @@
 
 </body>
 </html>
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
